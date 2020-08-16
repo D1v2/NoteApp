@@ -1,4 +1,4 @@
-package com.example.registerapp;
+package com.example.registerapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.example.registerapp.R;
+import com.example.registerapp.activities.CreateNoteActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivityForResult(
-                        new Intent(getApplicationContext(),CreateNoteActivity.class),REQUEST_CODE_ADD_NOTE
+                        new Intent(getApplicationContext(), CreateNoteActivity.class),REQUEST_CODE_ADD_NOTE
                 );
             }
         });
