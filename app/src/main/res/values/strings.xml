@@ -5,4 +5,6 @@
     <string name="name_of_chidren">Name of Chidren</string>
     <string name="note_subtitle">Add Deatils</string>
     <string name="type_about_children">Type About Children</string>
+    <string name="miscalleneous">miscalleneous</string>
+    <string name="pick_color">Pick Color</string>
 </resources>

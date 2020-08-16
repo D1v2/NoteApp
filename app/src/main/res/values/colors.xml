@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#E4DBDB</color>
+    <color name="colorPrimary">#4E224A</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#FFEB3B</color>
     <color name="colorWhite">#FFFCFC</color>
@@ -11,7 +11,7 @@
     <color name="colorSubtitle">#97C2B4</color>
     <color name="colorDefaultNotecolor">#122A2E</color>
     <color name="colornoteSubtitletext">#07FDFD</color>
-    <color name="colorMesclenousBackground">#1f1f1f</color>
+    <color name="colorMescllaneousBackground">#1f1f1f</color>
     <color name="colorNotecolor2">#6E8996</color>
     <color name="colorNotecolor3">#FF4842</color>
     <color name="colorNotecolor4">#3A52Fc</color>
