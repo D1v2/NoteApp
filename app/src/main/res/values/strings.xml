@@ -7,4 +7,8 @@
     <string name="type_about_children">Type About Children</string>
     <string name="miscalleneous">miscalleneous</string>
     <string name="pick_color">Pick Color</string>
+    <string name="add_url">Add Url</string>
+    <string name="enter_url">Enter Url</string>
+    <string name="add">ADD</string>
+    <string name="cancle">CANCLE</string>
 </resources>
