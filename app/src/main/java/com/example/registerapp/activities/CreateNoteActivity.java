@@ -60,8 +60,9 @@ public class CreateNoteActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_SELECT_IMAGE=2;
 
     private ImageView imageNote;
-
     private String selectedImagePath;
+
+    private Note alreadyAvailableNote;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,11 +98,32 @@ public class CreateNoteActivity extends AppCompatActivity {
 
         selectedImagePath="";
 
+        if(getIntent().getBooleanExtra("isViewOrUpdate",false)){
+            alreadyAvailableNote=(Note)getIntent().getSerializableExtra("note");
+            setViewonUpdate();
+        }
 
         selectedNoteColor="#122A2E";
         initMiscallaneous();
         setSubtitleIndicatorColor();
     }
+
+    private void setViewonUpdate(){
+        inputNotetitle.setText(alreadyAvailableNote.getTitle());
+        inputNotesubtitle.setText(alreadyAvailableNote.getSubtitle());
+        inputNoteText.setText(alreadyAvailableNote.getNoteText());
+        textDatetime.setText(alreadyAvailableNote.getDatetime());
+        if(alreadyAvailableNote.getImagePath()!=null && !alreadyAvailableNote.getImagePath().trim().isEmpty()){
+            imageNote.setImageBitmap(BitmapFactory.decodeFile(alreadyAvailableNote.getImagePath()));
+            imageNote.setVisibility(View.VISIBLE);
+            selectedImagePath=alreadyAvailableNote.getImagePath();
+        }
+        if(alreadyAvailableNote.getWeblink()!= null && !alreadyAvailableNote.getWeblink().trim().isEmpty()){
+            textWebURL.setText(alreadyAvailableNote.getWeblink());
+            layoutWebURl.setVisibility(View.VISIBLE);
+        }
+    }
+
     private void saveNotes(){
         if(inputNotetitle.getText().toString().trim().isEmpty()){
             Toast.makeText(this,"Note Title Can't be Empty",Toast.LENGTH_SHORT).show();
@@ -121,6 +143,10 @@ public class CreateNoteActivity extends AppCompatActivity {
 
         if(layoutWebURl.getVisibility()==View.VISIBLE){
             note.setWeblink(textWebURL.getText().toString());
+        }
+
+        if(alreadyAvailableNote!=null){
+            note.setId(alreadyAvailableNote.getId());
         }
 
         @SuppressLint("StaticFieldLeak")
@@ -228,6 +254,23 @@ public class CreateNoteActivity extends AppCompatActivity {
                 setSubtitleIndicatorColor();
             }
         });
+
+        if(alreadyAvailableNote!=null && alreadyAvailableNote.getColor()!=null && !alreadyAvailableNote.getColor().trim().isEmpty()){
+            switch (alreadyAvailableNote.getColor()){
+                case "#6E8996":
+                    layoutMiscallaneous.findViewById(R.id.viewColor2).performClick();
+                    break;
+                case "#FF4842":
+                    layoutMiscallaneous.findViewById(R.id.viewColor3).performClick();
+                    break;
+                case "#3A52Fc":
+                    layoutMiscallaneous.findViewById(R.id.viewColor4).performClick();
+                    break;
+                case "#000000":
+                    layoutMiscallaneous.findViewById(R.id.viewColor5).performClick();
+                    break;
+            }
+        }
 
         layoutMiscallaneous.findViewById(R.id.layoutAddImage).setOnClickListener(new View.OnClickListener() {
             @Override
