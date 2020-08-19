@@ -3,13 +3,13 @@ package com.example.registerapp.activities;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -42,7 +42,6 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.regex.Pattern;
 
 public class CreateNoteActivity extends AppCompatActivity {
 
@@ -84,7 +83,7 @@ public class CreateNoteActivity extends AppCompatActivity {
         viewsubtitleindicator=findViewById(R.id.viewsubtitleindicator);
         imageNote=findViewById(R.id.imageNote);
         textWebURL=findViewById(R.id.textWebUrl);
-        layoutWebURl=findViewById(R.id.layoutAddUrl);
+        layoutWebURl=findViewById(R.id.layoutWebUrl);
 
         textDatetime.setText(
                 new SimpleDateFormat("EEEE,dd MMMM yyyy HH:mm,a", Locale.getDefault()).format(new Date())
@@ -122,6 +121,21 @@ public class CreateNoteActivity extends AppCompatActivity {
         });
 
         selectedNoteColor="#122A2E";
+
+        if (getIntent().getBooleanExtra("isFromQuickListener",false)){
+            String type=getIntent().getStringExtra("quickActionType");
+            if(type!=null){
+                if(type.equals("image")){
+                    selectedImagePath=getIntent().getStringExtra("imagePath");
+                    imageNote.setImageBitmap(BitmapFactory.decodeFile(selectedImagePath));
+                    imageNote.setVisibility(View.VISIBLE);
+                    findViewById(R.id.imageRemoveImage).setVisibility(View.VISIBLE);
+                } else if (type.equals("Url")) {
+                    textWebURL.setText(getIntent().getStringExtra("URL"));
+                    layoutWebURl.setVisibility(View.VISIBLE);
+                }
+            }
+        }
         initMiscallaneous();
         setSubtitleIndicatorColor();
     }
